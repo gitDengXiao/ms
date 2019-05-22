@@ -10,7 +10,8 @@
 
 ##### 如何解决跨域
 
-##### 什么是Etag
+##### Last-Modified,Etag,Expire区别
+https://www.cnblogs.com/waruzhi/p/3831089.html
 
 ##### nginx部分知识
 
