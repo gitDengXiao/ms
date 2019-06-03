@@ -112,6 +112,10 @@ package.json 调整 package.json 文件，以便确保我们安装包是privat
 
 webpack4速度更快，大型项目节约90%构建时间，内置更多api
 
+##### loader
+
+url-loader,图片打包成base64，减少请求个数，如果太大会增加js大小同时造成页面加载白屏，同时限制图片大小，与file-loader类似
+
 ##### tree shaking  
 
 ##### 懒加载
