@@ -101,3 +101,19 @@ new CleanWebpackPlugin(), // 每次打包前清空
 Manifest
 你的应用程序中，形如 index.html 文件、一些 bundle 和各种资源加载到浏览器中，会发生什么？你精心安排的 /src 目录的文件结构现在已经不存在，所以 webpack 如何管理所有模块之间的交互呢？这就是 manifest 数据用途的由来……
 当编译器compiler开始执行、解析和映射应用程序时，他会保留所有模块的详细要点。这个数据集合称为manifest，当完成打包并发送到浏览器时，会在运行时通过 Manifest 来解析和加载模块。无论你选择哪种模块语法，那些 import 或 require 语句现在都已经转换为 __webpack_require__ 方法
+
+
+
+### webpack4
+
+webpack——模块打包工具
+
+package.json 调整 package.json 文件，以便确保我们安装包是private(私有的)，并且移除 main入口。这可以防止意外发布你的代码 
+
+webpack4速度更快，大型项目节约90%构建时间，内置更多api
+
+##### tree shaking  
+
+##### 懒加载
+
+##### 代码分割
