@@ -112,9 +112,42 @@ package.json 调整 package.json 文件，以便确保我们安装包是privat
 
 webpack4速度更快，大型项目节约90%构建时间，内置更多api
 
+
+
 ##### loader
 
 url-loader,图片打包成base64，减少请求个数，如果太大会增加js大小同时造成页面加载白屏，同时限制图片大小，与file-loader类似
+
+##### postcss-loader，autoprefixer
+
+自动增加css前缀
+
+importloaders,数量默认是0 
+
+``` js
+{ loader: 'css-loader', options: { modules: true, importLoaders: 1 } }   
+//modules  样式不冲突
+```
+
+##### plugin  
+
+plugin可以在webpack运行到某个时刻的时候帮你做一些事情
+
+htmlwebpackplugin 打包结束后自动生成html并把打包的js自动引入html
+
+##### sourcemap
+
+我们在打包中，将开发环境中源代码经过压缩，去空格，babel编译转化，最终可以得到适用于生产环境的项目代码，这样处理后的项目代码和源代码之间差异性很大，会造成无法debug的问题 ,ourcemap就是为了解决上述代码定位的问题，简单理解，就是构建了处理前的代码和处理后的代码之间的桥梁。主要是方便开发人员的错误定位。 
+
+##### webpackdevserver
+
+##### modules replacement    (hmr功能)
+
+
+
+
+
+
 
 ##### tree shaking  
 
