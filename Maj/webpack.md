@@ -137,20 +137,20 @@ htmlwebpackplugin 打包结束后自动生成html并把打包的js自动引入ht
 
 ##### sourcemap
 
-我们在打包中，将开发环境中源代码经过压缩，去空格，babel编译转化，最终可以得到适用于生产环境的项目代码，这样处理后的项目代码和源代码之间差异性很大，会造成无法debug的问题 ,ourcemap就是为了解决上述代码定位的问题，简单理解，就是构建了处理前的代码和处理后的代码之间的桥梁。主要是方便开发人员的错误定位。 
+我们在打包中，将开发环境中源代码经过压缩，去空格，babel编译转化，最终可以得到适用于生产环境的项目代码，这样处理后的项目代码和源代码之间差异性很大，会造成无法debug的问题 ,sourcemap就是为了解决上述代码定位的问题，简单理解，就是构建了处理前的代码和处理后的代码之间的桥梁。主要是方便开发人员的错误定位。 
 
-##### webpackdevserver
+##### webpackdevserver()
 
 ##### modules replacement    (hmr功能)
 
+##### tree shaking （只支持es module 也就是 import）  
 
+##### webpack-merge
 
-
-
-
-
-##### tree shaking  
+##### code-splitting
 
 ##### 懒加载
 
-##### 代码分割
+##### library
+
+##### 
