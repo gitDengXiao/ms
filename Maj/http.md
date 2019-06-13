@@ -26,9 +26,26 @@ xss(跨站脚本攻击)，是指攻击者在返回的html中嵌入js脚本
 
 防止：httponly
 
+##### websocket
+
+websocket是一个持久化的协议,服务端就可以主动推送信息给客户端 
+
+典型的websocket握手
+
+```js
+...
+upgrade:websocket
+connection:upgrade
+...
+```
+
+同时，在传统的方式上，要不断的建立，关闭HTTP协议，由于HTTP是非状态性的，每次都要重新传输 identity info(鉴别信息），来告诉服务端你是谁。 虽然接线员很快速，但是每次都要听这么一堆，效率也会有所下降的， 但是Websocket只需要一次HTTP握手，所以说整个通讯过程是建立在一次连接/状态中，也就避免了HTTP的非状态性，服务端会一直知道你的信息，直到你关闭请求，这样就解决了接线员要反复解析HTTP协议，还要查看identity info的信息 
+
 ##### 如何理解http协议
 
 ##### http与https的区别
+
+<https://juejin.im/post/5b44a485e51d4519945fb6b7#heading-40> 
 
 #### 如何实现多页面共享登录？如何实现同项目多页面不同储存？
 
@@ -39,7 +56,20 @@ xss(跨站脚本攻击)，是指攻击者在返回的html中嵌入js脚本
 ##### 如何解决跨域
 
 ##### Last-Modified,Etag,Expire区别
+
+**Last-Modified 与 ETag 是可以一起使用的，服务器会优先验证 ETag，一致的情况下，才会继续比对 Last-Modified，最后才决定是否返回 304。** 
+
+<https://segmentfault.com/q/1010000004200644> 
+
 https://www.cnblogs.com/waruzhi/p/3831089.html
+
+last-modified 是httpheader中资源最后修改时间，如果带有last-modified，下一次发送http请求，将会带if-modified-since的httpheader，如果没有过期，将会收到304的响应，从缓存中获取。
+
+etag是httpheader中代表资源的标签，在服务端生成。如果带有etag，下一次发送etag的请求，如果etag没有发生变化将收到304的响应，从缓存中获取
+
+
+
+
 
 ##### nginx部分知识
 
