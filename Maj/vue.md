@@ -19,3 +19,38 @@
 3、实现一个watcher，作为连接observer和compile的桥梁，能够订阅并收到每个属性变动的通知，执行指令绑定的响应回调函数，从而更新视图。
 
 ##### vue scoped 原理
+
+##### Vue 组件 data 为什么必须是函数 
+
+每个组件都是 Vue 的实例 
+
+组件共享 data 属性，当 data 的值是同一个引用类型的值时，改变其中一个会影响其他 
+
+##### Vue computed实现，与watch比较
+
+计算属性的主要场景是代替模板内的表达式，或者data值得任何复杂逻辑都应该使用computed来计算它的优势：
+
+1.逻辑清晰，便于管理
+
+2.计算值会被缓存，依赖的data值改变时才会从新计算
+
+**相同**： computed和watch都起到监听/依赖一个数据，并进行处理的作用 
+
+**异同**：它们其实都是vue对监听器的实现，只不过**computed主要用于对同步数据的处理，watch则主要用于观测某个值的变化去完成一段开销较大的复杂业务逻辑**。能用computed的时候优先用computed，避免了多个数据影响其中某个数据时多次调用watch的尴尬情况。
+
+##### vue定时器问题
+
+方案一常规操作定义timer在beforeDestroy销毁
+
+方案二通过$once这个事件侦听器器在定义完定时器之后的位置来清除定时器。 
+
+```js
+const timer = setInterval(() =>{                    
+    // 某些定时器操作                
+}, 500);            
+// 通过$once来监听定时器，在beforeDestroy钩子可以被清除。
+this.$once('hook:beforeDestroy', () => {            
+    clearInterval(timer);                                    
+})
+```
+
