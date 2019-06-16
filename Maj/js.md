@@ -1,3 +1,25 @@
+##### ajax面试
+
+```js
+1.创建XMLHttpRequest对象
+	var xhr = new XMLHttpRequest()
+2.设置请求参数
+	xhr.open(请求方式，请求地址，异步或同步)
+3.设置回调
+    xhr.onreadystatechange = function(){
+        if(xhr.reasyState===4){
+                if(xhr.status === 200) {
+                    //5、接受响应
+                    console.log(xhr.responseText);
+                }
+            }
+    }
+4、发送请求
+    xhr.send()
+```
+
+
+
 ##### indexOf 和  lastIndexOf 是什么？
 
 indexOf 和 lastIndexOf 都是索引文件
