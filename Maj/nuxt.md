@@ -262,13 +262,72 @@ server/index.js文件里面对api引用如下：
 
 ![img](https://user-gold-cdn.xitu.io/2017/8/9/209f429d29bb0a703cf835526049df00?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
 
+#### 9.部署
 
+第一步、在本地 `npm run build`,会在.nuxt文件夹下生成dist文件 
 
+第二步、把本地文件的`.nuxt`,`static`,`package.json`,`nuxt.config.js`,这四个文件夹放到服务器目录文件下 
 
+第三步、进入目录文件夹，安装依赖 
 
+nginx 文件 
 
+```js
+# 通过 upstream nodejs 可以配置多台 nodejs 节点，做负载均衡
+# keepalive 设置存活时间。如果不设置可能会产生大量的 timewait
+# proxy_pass 反向代理转发 http://nodejs
 
+upstream nodenuxt {
+    server 127.0.0.1:3000; # nuxt 项目监听端口
+    keepalive 64;
+}
+server {
+  listen 80;
+  server_name www.qiangdada.cn; //二级域名
+  
+  location / {
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+    proxy_set_header Host $host;
+    proxy_set_header X-Nginx-Proxy true;
+    proxy_cache_bypass $http_upgrade;
+    proxy_pass http://nodenuxt; # 反向代理
+  }
+    
+  error_page ....
+}
+```
 
+重新启动 nginx 服务 
+
+```js
+sudo service nginx restart
+```
+
+如果我们按照上面的步骤进行部署的话，服务器会经常断掉连接，那我们的服务也就断了。所以为了守护好我们的 nodejs 进程，这里我将使用 pm2 对进程进行守护
+
+首先全局安装 pm2
+
+```js
+npm i pm2 -g
+```
+
+然后
+
+```js
+pm2 start npm --name "nuxt-ssr-demo" -- run build
+
+pm2 list
+pm2 show 0                           #查看进程详细信息，0为PM2进程id 
+pm2 stop all                         #停止PM2列表中所有的进程
+pm2 stop 0                           #停止PM2列表中进程为0的进程
+pm2 reload all                       #重载PM2列表中所有的进程
+pm2 reload 0                         #重载PM2列表中进程为0的进程
+pm2 delete 0                         #删除PM2列表中进程为0的进程
+pm2 delete all                       #删除PM2列表中所有的进程
+
+```
 
   
 
