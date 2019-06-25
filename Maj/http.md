@@ -41,6 +41,10 @@ connection:upgrade
 
 同时，在传统的方式上，要不断的建立，关闭HTTP协议，由于HTTP是非状态性的，每次都要重新传输 identity info(鉴别信息），来告诉服务端你是谁。 虽然接线员很快速，但是每次都要听这么一堆，效率也会有所下降的， 但是Websocket只需要一次HTTP握手，所以说整个通讯过程是建立在一次连接/状态中，也就避免了HTTP的非状态性，服务端会一直知道你的信息，直到你关闭请求，这样就解决了接线员要反复解析HTTP协议，还要查看identity info的信息 
 
+websocket如何检测心跳包
+
+
+
 ##### 如何理解http协议
 
 ##### http与https的区别
@@ -82,3 +86,31 @@ gzip
 请求过滤（404  500 页面）
 
 缓存与不缓存
+
+
+
+**301,302**
+
+301 **永久重定向** 
+
+302 **临时重定向** 
+
+
+
+##### cookie有那些属性
+
+**name**:cookie的名称 
+
+**value**:cookie的值 
+
+**domain**:为可以访问此cookie的域名 
+
+**path**:字段为可以访问此cookie的页面路径。 比如domain是abc.com,path是/test，那么只有/test路径下的页面可以读取此cookie 
+
+**expires/max-age**:字段为此cookie超时时间。若设置其值为一个时间，那么当到达此时间后，此cookie失效。不设置的话默认值是Session，意思是cookie会和session一起失效。当浏览器关闭(不是浏览器标签页，而是整个浏览器) 后，此cookie失效 
+
+**size**:此cookie大小 
+
+**http**:cookie的httponly属性。若此属性为true，则只有在http请求头中会带有此cookie的信息，而不能通过document.cookie来访问此cookie 
+
+**secure**:设置是否只能通过https来传递此条cookie 
