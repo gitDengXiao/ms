@@ -1,3 +1,21 @@
+**Object.create(),{},new object()**
+
+```js
+var obj ={a: 1}
+var b = Object.create(obj)
+console.log(obj.a) // 1
+console.log(b)  // {}
+console.log(b.a) // 1
+b.a = 2
+console.log(obj.a)
+//Object.create()返回了一个新的空对象，并且这个空对象的构造函数的原型（prototype）是指向obj的。所以当我们访问新对象b.a的时候实际上是通过原型链访问的obj中的a
+
+//Object.create(null) 会创建一个真正的空对象，并没有继承Object原型链上的方法
+//var a = {} 这并不是一个纯粹的空对象，它会继承原型链上的很多方法
+```
+
+
+
 ##### ajax面试
 
 ```js
@@ -16,6 +34,29 @@
     }
 4、发送请求
     xhr.send()
+```
+
+**字符串加减**
+
+
+
+**valueof** **tostring**
+
++号作为一元运算符----在这个情况下，对象基本数据类型的装换规则是：调用对象的toString或者valueOf函数，将对象转化为基本数据类型的值 ，那么到底是调用toString()还是 valueOf()？
+
+```js
+// https://www.jianshu.com/p/c1872ec363cb
+//关于(a ==1 && a== 2 && a==3) 值为true
+var b = 0
+var a = {
+    valueOf(){
+        return b+=1
+    }
+}
+if(a == 1 && a==2 && a== 3){
+    console.log('true')
+}
+//https://juejin.im/post/5a63f9a451882573473ddba4
 ```
 
 
