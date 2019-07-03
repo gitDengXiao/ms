@@ -40,7 +40,7 @@ console.log(obj.a)
 
 
 
-**valueof** **tostring**
+**valueof** **tostring**（类型转换）
 
 +号作为一元运算符----在这个情况下，对象基本数据类型的装换规则是：调用对象的toString或者valueOf函数，将对象转化为基本数据类型的值 ，那么到底是调用toString()还是 valueOf()？
 

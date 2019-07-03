@@ -71,9 +71,7 @@ last-modified 是httpheader中资源最后修改时间，如果带有last-modifi
 
 etag是httpheader中代表资源的标签，在服务端生成。如果带有etag，下一次发送etag的请求，如果etag没有发生变化将收到304的响应，从缓存中获取
 
-
-
-
+浏览器默认的缓存是放在内存内的，但我们知道，内存里的缓存会因为进程的结束或者说浏览器的关闭而被清除，而存在硬盘里的缓存才能够被长期保留下去。很多时候，我们在network面板中各请求的size项里，会看到两种不同的状态：`from memory cache` 和 `from disk cache`，前者指缓存来自内存，后者指缓存来自硬盘。而控制缓存存放位置的，不是别人，就是我们在服务器上设置的Etag字段。在浏览器接收到服务器响应后，会检测响应头部（Header），如果有Etag字段，那么浏览器就会将本次缓存写入硬盘中。
 
 ##### nginx部分知识
 
@@ -114,3 +112,76 @@ gzip
 **http**:cookie的httponly属性。若此属性为true，则只有在http请求头中会带有此cookie的信息，而不能通过document.cookie来访问此cookie 
 
 **secure**:设置是否只能通过https来传递此条cookie 
+
+
+
+**HTTP请求头含有那些属性**
+
+
+
+Accept: 浏览器端可以接受的媒体类型( text/html ) ,Accept: */*  代表浏览器可以处理所有类型 
+
+Accept-Encoding : 浏览器申明自己接收的编码方法，通常指定压缩方法，是否支持压缩，支持什么压缩方法（gzip，deflate），（注意：这不是只字符编码） 
+
+Accept-Language : 浏览器申明自己接收的语言 
+
+Content-type:
+
+Content-Disposition:
+
+Origin:发起一个针对跨域资源共享的请求（该请求要求服务器在响应中加入一个`Access-Control-Allow-Origin`的消息头，表示访问控制所允许的来源） 
+
+Referer:告诉服务器我是从哪个页面链接过来的，服务器籍此可以获得一些信息用于处理。比如从我主页上链接到一个朋友那里，他的服务器就能够从HTTP Referer中统计出每天有多少用户点击我主页上的链接访问他的网站 
+
+User-Agent:客户端使用的操作系统和浏览器的名称和版本 
+
+cookie：
+
+Host:初始URL的主机和端口
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

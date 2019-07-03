@@ -1,12 +1,37 @@
 
 
+```js 
+ created: function () {
+    // `this` 指向 vm 实例
+    console.log('a is: ' + this.a)
+  }
+```
+
+不要在选项属性或回调上使用[箭头函数](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Arrow_functions)，比如 `created: () => console.log(this.a)` 或 `vm.$watch('a', newValue => this.myMethod())`。因为箭头函数并没有 `this`，`this`会作为变量一直向上级词法作用域查找，直至找到为止，经常导致 `Uncaught TypeError: Cannot read property of undefined` 或 `Uncaught TypeError: this.myMethod is not a function` 之类的错误。 
+
 ##### Vue(mvvm)钩子函数
+
+> 创建前/后： 在beforeCreated阶段，vue实例的挂载元素![el和数据对象data都为undefined，还未初始化。在created阶段，vue实例的数据对象data有了，](https://juejin.im/equation?tex=el%E5%92%8C%E6%95%B0%E6%8D%AE%E5%AF%B9%E8%B1%A1data%E9%83%BD%E4%B8%BAundefined%EF%BC%8C%E8%BF%98%E6%9C%AA%E5%88%9D%E5%A7%8B%E5%8C%96%E3%80%82%E5%9C%A8created%E9%98%B6%E6%AE%B5%EF%BC%8Cvue%E5%AE%9E%E4%BE%8B%E7%9A%84%E6%95%B0%E6%8D%AE%E5%AF%B9%E8%B1%A1data%E6%9C%89%E4%BA%86%EF%BC%8C)el还没有。
+
+> 载入前/后：在beforeMount阶段，vue实例的$el和data都初始化了，但还是挂载之前为虚拟的dom节点，data.message还未替换。在mounted阶段，vue实例挂载完成，data.message成功渲染。
+
+> 更新前/后：当data变化时，会触发beforeUpdate和updated方法。
+
+> 销毁前/后：在执行destroy方法后，对data的改变不会再触发周期函数，说明此时vue实例已经解除了事件监听以及和dom的绑定，但是dom结构依然存在
+
+ 
 
 服务端渲染期间不执行的钩子函数：所有的生命周期钩子函数中，只有 beforeCreate 和 created 会在服务器端渲染(SSR)过程中被调用。这就是说任何其他生命周期钩子函数中的代码（例如 beforeMount 或 mounted），只会在客户端执行。 
 
 2.5.0 新增 errorCaptured 捕获一个来自子孙组件的错误时被调用 ,此钩子可以返回false以阻止该错误继续向上传播。 
 
+**Vue.js的template编译的理解** 
+
+<https://juejin.im/post/5b19e81de51d454e907bd1c5> 
+
 ##### Vue双向绑定原理
+
+<https://juejin.im/post/5b19e81de51d454e907bd1c5> 
 
 数据劫持：Vue采用 **数据劫持** 结合 **发布者-订阅模式**，通过Object.defineProperty()来劫持各个属性的getter,setter,在数据变动时候发布消息给订阅者，触发相应的回调。
 
@@ -79,4 +104,8 @@ $emit用来触发一个事件
 1、ref 加在普通的元素上，用this.ref.name 获取到的是dom元素 
 
 2、ref 加在子组件上，用this.ref.name 获取到的是组件实例，可以使用组件的所有方法。 
+
+ **proxyable  跨域代理原理**
+
+跨域是浏览器禁止的，服务端并不禁止跨域  所以浏览器可以发给自己的服务端然后，由自己的服务端再转发给要跨域的服务端，做一层代理 `vue-cli`的`proxyTable`用的是`http-proxy-middleware`中间件 `create-react-app`用的是`webpack-dev-server`内部也是用的`http-proxy-middleware` `http-proxy-middleware`内部用的`http-proxy` 
 

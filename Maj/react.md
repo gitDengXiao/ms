@@ -12,6 +12,8 @@
 
 ##### 列表diff中key的作用？
 
+**setstate是异步还是同步**
+
 ##### React在什么情况下会render？
 
 初始化
@@ -108,6 +110,8 @@ Context 通过组件树提供了一个传递数据的方法，从而避免了在
 ##### 为什么react不嫩更直接更改state而Vue可以？
 
 ##### Vue和react的数据流分别是?
+
+**vue,react区别**
 
 
 
