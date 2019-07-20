@@ -1,6 +1,6 @@
 ##### git版本回退
 
-git1
+gitone
 
 git reset , revert , rebase
 
