@@ -1,3 +1,9 @@
+##### git版本回退
+
+git reset , revert , rebase
+
+https://www.liaoxuefeng.com/wiki/896043488029600/897013573512192> 
+
 ##### 用nrm切换npm源
 
 <https://www.cnblogs.com/wangmeijian/p/7072053.html> 
