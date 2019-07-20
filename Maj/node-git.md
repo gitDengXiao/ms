@@ -1,5 +1,7 @@
 ##### git版本回退
 
+git1
+
 git reset , revert , rebase
 
 https://www.liaoxuefeng.com/wiki/896043488029600/897013573512192> 
