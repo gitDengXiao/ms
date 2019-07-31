@@ -1,3 +1,35 @@
+```js
+        typeof NaN // "number"
+
+        0.5 + 0.1 == 0.6 //true
+        0.1 + 0.2 == 0.3 //false  
+
+        Math.max() //-Infinity
+        Math.min() //Infinity
+
+        [] + [] // ""
+        [] + {} //"[object Object]"
+        {} + [] //0
+
+        true + true + true === 3 // true
+        true - true // 0
+        true == 1 // true
+        true === 1 // false
+
+        9 + "1" // "91"
+        9 - '1' // 8
+        [] == 0 // true
+
+//js里的隐式的rule
+//js在进行加法运算的时候， 会先推测两个操作数是不是number。 
+//如果是，则直接相加得出结果。 
+//如果其中有一个操作数为string，则将另一个操作数隐式的转换为string，然后进行字符串拼接得出结果。 
+//如果操作数为对象或者是数组这种复杂的数据类型，那么就将两个操作数都转换为字符串，进行拼接 
+//如果操作数是像boolean这种的简单数据类型，那么就将操作数转换为number相加得出结果
+
+
+```
+
 **Object.create(),{},new object()**
 
 ```js
