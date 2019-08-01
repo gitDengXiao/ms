@@ -111,3 +111,5 @@ $emit用来触发一个事件
 
 跨域是浏览器禁止的，服务端并不禁止跨域  所以浏览器可以发给自己的服务端然后，由自己的服务端再转发给要跨域的服务端，做一层代理 `vue-cli`的`proxyTable`用的是`http-proxy-middleware`中间件 `create-react-app`用的是`webpack-dev-server`内部也是用的`http-proxy-middleware` `http-proxy-middleware`内部用的`http-proxy` 
 
+##### Proxy与Object.defineProperty的优劣对比?
+
