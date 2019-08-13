@@ -30,7 +30,23 @@
 //parseInt函数 (如果参数不是一个字符串，则将其转换为字符串。字符串开头的空白符将会被忽略)
 ```
 
-**Object.create(),{},new object()**
+##### js异步方法
+
+1.回调
+
+2.事件监听
+
+3.发布、订阅
+
+4.promise
+
+5.await
+
+##### js sort() 方法原理以及使用
+
+##### 堆栈溢出、尾调用、尾递归、setTimeout不会堆栈溢出？
+
+##### **Object.create(),{},new object()**
 
 ```js
 var obj ={a: 1}
@@ -181,7 +197,29 @@ IIFE中定义的任何变量和函数，都会在执行结束时被销毁
 
 ##### 如何对一个url查询参数转换成数据字典
 
-##### 数组去重
+##### 数组去重（求数组交集，并集，差集）
+
+<https://blog.csdn.net/u010003835/article/details/79042135> 
+
+```js
+        // let a = [1, 2, 3],
+        //     b = [2, 3, 4, 5]
+
+        // console.log(Array.from(new Set(a.concat(b)))) 并集(es6)
+        // let newArray = a.filter(item => {
+        //    return b.includes(item)
+        // })
+        // console.log(newArray)  交集(es7)
+
+        // let aSet = new Set(a)
+        // let bSet = new Set(b)
+ 
+        // let newArray = Array.from(new Set(a.filter(item=>{
+        //     return bSet.has(item)
+        // })))
+
+        // console.log(newArray)  交集（es6）
+```
 
 为啥 await 不能用在 forEach 中
 
