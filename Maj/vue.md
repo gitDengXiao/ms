@@ -1,6 +1,3 @@
-##### DIFF算法
-
-
 
 ```js 
  created: function () {
