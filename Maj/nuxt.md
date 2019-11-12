@@ -125,6 +125,7 @@ title meta link ...
 **loading**
 
 该配置项用于个性化定制 Nuxt.js 使用的加载组件 
+loading: '~/components/loading.vue',
 
 **引入css**
 
@@ -162,6 +163,27 @@ Nuxt.js 允许你在自动生成的 `vendor.bundle.js` 文件中添加一些�
     ]
   ]
 ```
+配置vw
+build: {
+    extractCSS: true,
+    publicPath: '/cdn/',
+    postcss: {
+      'plugins': {
+        'postcss-aspect-ratio-mini': {},
+        'postcss-write-svg': { utf8: false },
+        'postcss-preset-env': { autoprefixer: { grid: 'no-autoplace' } },
+        'postcss-px-to-viewport': {
+          viewportWidth: 750, // (Number) The width of the viewport.
+          viewportHeight: 1334, // (Number) The height of the viewport.
+          unitPrecision: 4, // (Number) The decimal numbers to allow the REM units to grow to.
+          viewportUnit: 'vw', // (String) Expected units.
+          selectorBlackList: ['.ignore', '.hairlines', '.van', 'van'], // (Array) The selectors to ignore and leave as px.
+          minPixelValue: 1, // (Number) Set the minimum pixel value to replace.
+          mediaQuery: false // (Boolean) Allow px to be converted in media queries.
+        },
+        cssnano: { preset: ['default', { 'z-index': false, autoprefixer: true, 'postcss-zindex': false }] }
+      }
+    },
 
 ##### 加入插件比如**element**
 
