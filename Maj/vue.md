@@ -2,20 +2,26 @@
 
 <http://www.manongjc.com/detail/8-etibjppbtjywfex.html> 
 
+
+
 ```js
 //每一个函数对象都有一个prototype属性，但是普通对象没有
- function NewObj(){
+	    function NewObj() {
             this.name = 'name'
         }
         const son = new NewObj()
         NewObj.prototype.age = 10
 
-        console.log(son.__proto__ === NewObj.prototype)  //true 
+        console.log(son.__proto__ === NewObj.prototype) //true 
         console.log(NewObj.prototype)
         console.log(son.prototype) // undefined
         console.log(NewObj)
- 	    console.log(NewObj.age) // undefined
+        console.log(NewObj.age) // undefined
         console.log(son.age) //10
+        console.log('name' in son) //true
+        console.log('name' in NewObj) //true
+	    console.log('age' in son) //true
+        console.log('age' in NewObj) //false
 ```
 
 v-if、v-show、v-html 的原理是什么，它是如何封装的？
