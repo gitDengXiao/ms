@@ -1,3 +1,6 @@
+##### Vue.prototype 全局变量
+
+<http://www.manongjc.com/detail/8-etibjppbtjywfex.html> 
 
 v-if、v-show、v-html 的原理是什么，它是如何封装的？
 https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/307
