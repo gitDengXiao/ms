@@ -1,3 +1,9 @@
+记一次思否问答的问题思考：Vue为什么不能检测数组变动
+https://segmentfault.com/a/1190000015783546
+在vue中，通过object.defineProperty实现了对对象属性的监听，但是对数组已有元素也是实现监听的，那么为什么vue中没有提供着一个功能，使得arr[已有元素下表] = val 变成响应？
+
+尤大回答：就是因为性能问题
+
 ##### Vue.prototype 全局变量
 
 <http://www.manongjc.com/detail/8-etibjppbtjywfex.html> 
