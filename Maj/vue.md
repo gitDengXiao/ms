@@ -1,3 +1,6 @@
+记一次思否问答的问题思考：Vue为什么不能检测数组变动
+https://segmentfault.com/a/1190000015783546
+
 ##### Vue.prototype 全局变量
 
 <http://www.manongjc.com/detail/8-etibjppbtjywfex.html> 
