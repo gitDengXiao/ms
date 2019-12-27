@@ -51,6 +51,8 @@ www.example.com.root
 
 ##### js sort() 方法原理以及使用
 
+<https://www.jianshu.com/p/214627f54367> 
+
 ##### 堆栈溢出、尾调用、尾递归、setTimeout不会堆栈溢出？
 
 ##### **Object.create(),{},new object()**
@@ -211,7 +213,8 @@ IIFE中定义的任何变量和函数，都会在执行结束时被销毁
 ```js
         // let a = [1, 2, 3],
         //     b = [2, 3, 4, 5]
-
+Array.from()方法就是将一个类数组对象或者可遍历对象转换成一个真正的数组。
+Set类似于数组，区别在于它所有的成员都是唯一的，不能有重复的值
         // console.log(Array.from(new Set(a.concat(b)))) 并集(es6)
         // let newArray = a.filter(item => {
         //    return b.includes(item)
