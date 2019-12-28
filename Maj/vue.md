@@ -1,8 +1,36 @@
-记一次思否问答的问题思考：Vue为什么不能检测数组变动
+**记一次思否问答的问题思考：Vue为什么不能检测数组变动**
 https://segmentfault.com/a/1190000015783546
 在vue中，通过object.defineProperty实现了对对象属性的监听，但是对数组已有元素也是实现监听的，那么为什么vue中没有提供着一个功能，使得arr[已有元素下表] = val 变成响应？
 
-尤大回答：就是因为性能问题
+尤大回答：就是因为性能问题。
+
+那么vue3 proxy相比Object.definProperty有什么优点？
+
+Object.definProperty只能劫持对象的属性，但是proxy可以劫持整个对象，并返回一个新对象
+
+<https://juejin.im/post/5bf3e632e51d452baa5f7375> 
+
+（Proxy是es6提供的新特性，兼容性不好，最主要的是这个属性无法用polyfill来兼容，经评论提醒，目前Proxy并没有有效的兼容方案，未来大概会是3.0和2.0并行，需要支持IE的选择2.0 ）
+
+##### Vue双向绑定原理
+
+<https://segmentfault.com/a/1190000006599500> 
+
+<https://juejin.im/post/5b19e81de51d454e907bd1c5> 
+
+数据劫持：Vue采用 **数据劫持** 结合 **发布者-订阅模式**，通过Object.defineProperty()来劫持各个属性的getter,setter,在数据变动时候发布消息给订阅者，触发相应的回调。
+
+具体为以下几点：
+
+1、实现一个数据监听器observer，能够对数据对象所有属性进行监听，如有变动可拿到最新值并通知订阅者。
+
+2、实现一个指令解析器compile，对每个元素节点的指令进行扫描和解析，根据指令模板替换数据，以及绑定响应的更新函数。
+
+3、实现一个watcher，作为连接observer和compile的桥梁，能够订阅并收到每个属性变动的通知，执行指令绑定的响应回调函数，从而更新视图。
+
+
+
+**//分界线**
 
 ##### Vue.prototype 全局变量
 
@@ -66,19 +94,7 @@ v-html会先移除节点下的所有节点，调用html方法，通过addProp添
 
 <https://juejin.im/post/5b19e81de51d454e907bd1c5> 
 
-##### Vue双向绑定原理
 
-<https://juejin.im/post/5b19e81de51d454e907bd1c5> 
-
-数据劫持：Vue采用 **数据劫持** 结合 **发布者-订阅模式**，通过Object.defineProperty()来劫持各个属性的getter,setter,在数据变动时候发布消息给订阅者，触发相应的回调。
-
-具体为以下几点：
-
-1、实现一个数据监听器observer，能够对数据对象所有属性进行监听，如有变动可拿到最新值并通知订阅者。
-
-2、实现一个指令解析器compile，对每个元素节点的指令进行扫描和解析，根据指令模板替换数据，以及绑定响应的更新函数。
-
-3、实现一个watcher，作为连接observer和compile的桥梁，能够订阅并收到每个属性变动的通知，执行指令绑定的响应回调函数，从而更新视图。
 
 ##### vue scoped 原理
 
@@ -146,7 +162,7 @@ $emit用来触发一个事件
 
 跨域是浏览器禁止的，服务端并不禁止跨域  所以浏览器可以发给自己的服务端然后，由自己的服务端再转发给要跨域的服务端，做一层代理 `vue-cli`的`proxyTable`用的是`http-proxy-middleware`中间件 `create-react-app`用的是`webpack-dev-server`内部也是用的`http-proxy-middleware` `http-proxy-middleware`内部用的`http-proxy` 
 
-##### Proxy与Object.defineProperty的优劣对比?
+
 
 ##### vue自定义指令
 
