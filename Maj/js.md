@@ -1,3 +1,12 @@
+ clearTimeout(timer)  和 timer = null
+
+```js
+var x = setInterval(function(){
+    alert()
+    x = null;
+},1000);
+```
+
 主机名.次级域名.顶级域名.根域名
 www.example.com.root
 
@@ -198,7 +207,7 @@ IIFE中定义的任何变量和函数，都会在执行结束时被销毁
 
 9、sort()   对数组元素进行排序，改变原数组，返回该数组
 
-10、splice()   从数组中添加/删除项目，改变原数组，返回被删除的元素
+10、splice()   从数组中添加/删除项目，改变原数组，返回被删除的元素(**数组**)
 
 11、unshift()   向数组的开头添加一个或多个元素，改变原数组，返回新数组的长度 
 
