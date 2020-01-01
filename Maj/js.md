@@ -58,6 +58,21 @@ www.example.com.root
 
 5.await
 
+```js
+//因为 setTimeout() 不是异步函数， await 对它没作用的
+async function Func(){
+        let b = 0
+        b = await setTimeout(function(){return 20},3000)
+        return b // 这一行并不会 3 秒后才执行，而是立即执行
+      }
+      
+  setInterval(()=>{Func().then(res=>console.log(res))},1000)//依次为12,13,14,15...
+```
+
+**sleep函数**
+
+<https://muyiy.cn/question/program/42.html> 
+
 ##### js sort() 方法原理以及使用
 
 <https://www.jianshu.com/p/214627f54367> 
@@ -202,6 +217,12 @@ IIFE中定义的任何变量和函数，都会在执行结束时被销毁
 6、push()   向数组末尾添加一个或多个元素，改变原数组，返回新数组的长度
 
 7、reverse()   颠倒数组中元素的顺序，改变原数组，返回该数组
+
+```js
+string.split('').reverse().join('') 
+//字符串反转
+//https://muyiy.cn/question/program/81.html
+```
 
 8、shift()   把数组的第一个元素删除，若空数组，不进行任何操作，返回undefined,改变原数组，返回第一个元素的值
 
