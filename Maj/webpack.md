@@ -1,5 +1,29 @@
 项目中用过webpack吗？详细描述一下。
 
+```js
+//  webpack4.0
+//  基本
+
+//  html-webpack-plugin webpack打包出来的js文件我们需要引入到html中
+//  clean-webpack-plugin 清空文件夹
+//  autoprefixer  css添加浏览器前缀
+//  mini-css-extract-plugin  css样式从js文件中提取到单独的css文件中。这里需要说的细一点,上面我们所用到的mini-css-extract-plugin会将所有的css样式合并为一个css文件。如果你想拆分为一一对应的多个css文件,我们需要使用到extract-text-webpack-plugin，而目前mini-css-extract-plugin还不支持此功能。我们需要安装@next版本的extract-text-webpack-plugin
+//  url-loader ile-loader   搭配使用，功能与 file-loader 类似，如果文件小于限制的大小。则会返回 base64 编码，否则使用 file-loader 将文件移动到输出的目录中
+//  babel-loader  js代码兼容更多的环境
+
+// 优化 
+// 打包速度 
+// mode development production两个参数 production模式下会进行tree shaking(去除无用代码)和uglifyjs(代码压缩混淆)
+// HappyPack 多进程Loader转换
+// webpack-parallel-uglify-plugin  优化代码的压缩时间
+// DllPlugin DllReferencePlugin 抽离三方模块 对于开发项目中不经常会变更的静态依赖文件。类似于我们的elementUi、vue全家桶等等。因为很少会变更，所以我们不希望这些依赖要被集成到每一次的构建逻辑中去。 这样做的好处是每次更改我本地代码的文件的时候，webpack只需要打包我项目本身的文件代码，而不会再去编译第三方库。以后只要我们不升级第三方包的时候，那么webpack就不会对这些库去打包，这样可以快速的提高打包的速度。
+// cache-loader 缓存 我们每次执行构建都会把所有的文件都重复编译一遍，这样的重复工作是否可以被缓存下来呢，答案是可以的，目前大部分 loader 都提供了cache 配置项。比如在 babel-loader 中，可以通过设置cacheDirectory 来开启缓存，babel-loader?cacheDirectory=true 就会将每次的编译结果写进硬盘文件（默认是在项目根目录下的node_modules/.cache/babel-loader目录内，当然你也可以自定义）
+// 体积
+// externals  按照官方文档的解释，如果我们想引用一个库，但是又不想让webpack打包，并且又不影响我们在程序中以CMD、AMD或者window/global全局等方式进行使用，那就可以通过配置Externals。这个功能主要是用在创建一个库的时候用的，但是也可以在我们项目开发中充分使用Externals的方式，我们将这些不需要打包的静态资源从构建逻辑中剔除出去，而使用 CDN
+// tree-shaking  清除代码中无用
+
+```
+
 **babel编译原理、AST**
 
 - babylon 将 ES6/ES7 代码解析成 AST
@@ -10,15 +34,7 @@
 
   抽象语法树 (Abstract Syntax Tree)，是将代码逐字母解析成 树状对象对象 的形式 
 
-##### webpack:
 
-devServer : HtmlWebpackPlugin插件 webpack会自动将打包好的JS注入到这个index.html模板里面。
-
-module : css-loader使你能够使用类似@import 和 url(...)的方法实现 require()的功能；style-loader将所有的计算后的样式加入页面中； 二者组合在一起使你能够把样式表嵌入webpack打包后的JS文件中。postcss-loader生成写CSS的时候浏览器前缀
-
-module ： webpack最终会将各个模块打包成一个文件，因此我们样式中的url路径是相对入口html页面的，而不是相对于原始css文件所在的路径的。这就会导致图片引入失败。这个问题是用file-loader解决的，file-loader可以解析项目中的url引入（不仅限于css），根据我们的配置，将图片拷贝到相应的路径，再根据我们的配置，修改打包后文件引用路径，使之指向正确的文件。另外，如果图片较多，会发很多http请求，会降低页面性能。这个问题可以通过url-loader解决
-
-按路由加载。react-router4.0以上提供了react-loadable
 
 提取公共代码：
 
@@ -78,7 +94,7 @@ contenthash是针对文件内容级别的，只有你自己模块的内容变了
 mode:'production'
 ```
 
-#### 公共块提取(build)
+公共块提取(build)
 
 这表示将选择哪些块进行优化。当提供一个字符串，有效值为all，async和initial。提供all可以特别强大，因为这意味着即使在异步和非异步块之间也可以共享块。
 
@@ -162,6 +178,8 @@ htmlwebpackplugin 打包结束后自动生成html并把打包的js自动引入ht
 ##### 懒加载
 
 ##### library
+
+
 
 ##### 
 
