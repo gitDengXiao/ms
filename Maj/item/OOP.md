@@ -74,6 +74,43 @@ console.log(F3().name); // undefined
 
 2，继承
 
+子类可以使用父类的所有功能，并且对这些功能进行扩展。提高代码复用，继承是多态的前提。
+
+<https://juejin.im/post/5b8a8724f265da435450c591#heading-11> 
+
+```js
+      //  原型链继承 
+      //  构造函数继承 
+        function Person() {
+            this.name = '邵威儒'
+            this.pets = ['旺财', '小黄']
+        }
+
+        Person.prototype.eat = function () {
+            console.log('吃饭')
+        }
+
+        let p = new Person()
+
+
+        function Student() {
+            // Person.call(this) //利用call调用Person上的属性方法拷贝一份到Student ，即可解决下面的注释
+            this.num = "030578000"
+        }
+
+        Student.prototype = p
+
+        let stu = new Student()
+        let stu2 = new Student()
+
+        console.log(stu2.pets)
+
+        stu.pets.push('小红') // 所有实例共享原型对象同一个属性方法，如果原型对象上有引用类型，那么会被所有实例共享，也就是某个实例更改了，则会影响其他实例
+
+        console.log(stu.pets)
+        console.log(stu2.pets)
+```
+
 3，多态
 
 五大原则：
