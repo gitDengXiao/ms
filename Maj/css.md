@@ -32,20 +32,11 @@ overflow的值不为visible的元素；
 
 （font size of the root element）是指相对于根元素的字体大小的单位。简单的说它就是一个相对单位。看到rem大家一定会想起em单位，em（font size of the element）是指相对于父元素的字体大小的单位。它们之间其实很相似，只不过rem计算的规则是依赖根元素,em是依赖父元素计算
 
-版权声明：本文为CSDN博主「MaJing_CUI」的原创文章，遵循CC 4.0 by-sa版权协议，转载请附上原文出处链接及本声明。
-原文链接：https://blog.csdn.net/MaJing_CUI/article/details/78855089
-
-##### 水平垂直居中的方式有哪些？兼容IE6789
-
-不定宽高div水平垂直居中
-
-transfrom:translate(-50%,-50%);position:absolute;top:(50%);left:(50%)
-
 
 
 ##### 详细解释一下回流， 重绘
 
-##### **transform、opacity、filters这些动画不会引起回流重绘** 
+transform、opacity、filters这些动画不会引起回流重绘，虽然回流是没有了，但是后面进行图层合并的耗时却增加了60%，甚至快超过了回流消耗的时间 
 
 （回流必定将引起重绘，但是重绘不一定会引起回流）
 

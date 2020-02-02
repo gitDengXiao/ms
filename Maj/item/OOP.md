@@ -113,6 +113,8 @@ console.log(F3().name); // undefined
 
 3，多态
 
+允许将子类类型的[指针](https://baike.baidu.com/item/%E6%8C%87%E9%92%88/2878304)赋值给父类类型的指针 
+
 五大原则：
 
 1，单一职责原则
