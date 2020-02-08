@@ -13,3 +13,11 @@
 
 
 生命周期：首先是生命周期 vue3舍弃了 beforeCreate 和 created，把这两个混在一起变成了一个setup
+
+
+
+
+
+
+
+<https://www.jianshu.com/p/51dc95aa6eea> 

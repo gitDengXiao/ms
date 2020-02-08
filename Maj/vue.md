@@ -162,7 +162,14 @@ $emit用来触发一个事件
 
 跨域是浏览器禁止的，服务端并不禁止跨域  所以浏览器可以发给自己的服务端然后，由自己的服务端再转发给要跨域的服务端，做一层代理 `vue-cli`的`proxyTable`用的是`http-proxy-middleware`中间件 `create-react-app`用的是`webpack-dev-server`内部也是用的`http-proxy-middleware` `http-proxy-middleware`内部用的`http-proxy` 
 
+##### vuex
 
+actions和mutations区别：
 
-##### vue自定义指令
+action的功能和mutation是类似的，都是去变更store里的state，不过action和mutation有两点不同：
+
+1、action主要处理的是异步的操作，mutation必须同步执行，而action就不受这样的限制，也就是说action中我们既可以处理同步，也可以处理异步的操作
+
+2、action改变状态，最后是通过提交mutation
+
 
